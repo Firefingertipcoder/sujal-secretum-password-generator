@@ -135,6 +135,73 @@ export default function App() {
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<"generate" | "bulk" | "docs">("generate");
   const [history, setHistory] = useState<PasswordRecord[]>([]);
+  const [copiedDoc, setCopiedDoc] = useState<boolean>(false);
+
+  // Full Project Technical Briefing and Explanation
+  const PROJECT_EXPLANATION_CONTENT = `# SECRETUM CRYPTOGRAPHIC ENGINE: SYSTEM ARCHITECTURE & USER MANUAL
+**High-Performance Client-Side C++ WebAssembly Password Architect and PWA Extension**
+
+This document provides a highly detailed systems briefing of the **Secretum Engine**, explaining its source file design, mathematical random state mapping algorithms, WebAssembly sandbox boundaries, and operational instructions for portable devices (laptops and mobile).
+
+---
+
+## 🛡️ Executive Security Statement
+Secretum is built upon a **100% Client-Side Sovereign Data Model**. It does not maintain external analytics trackers, remote databases, cookies, or telemetry. No credentials or settings ever leave your client device. By decoupling the generation engine from the network stack, Secretum is immune to classical remote profiling, packet interception, and server-side database breaches.
+
+---
+
+## 🔬 Core Architecture: C++ WebAssembly & Shannon Entropy
+The application runs using a dual-state random generator logic, utilizing a sandboxed virtual machine inside your browser.
+
+1. **Hardware Entropy Seeds**:
+Secretum accesses direct local CPU/kernel hardware entropy to generate high-degree 32-bit state integers through the native standard API: \`window.crypto.getRandomValues\`.
+
+2. **WebAssembly Virtual Machine Sandbox**:
+Raw entropy floats are securely transferred as binary inputs directly across the WASM runtime memory interface line. The compiled C++ binary executes division operations to map indexes deterministically without modulo bias.
+
+3. **Shannon Entropy Calculations**:
+Password strength is mathematically scored using Shannon's Entropy Formula:
+H = -SUM(P_i * log2(P_i))
+This guarantees precise, objective safety audits and verifies local dictionary randomness.
+
+---
+
+## 📱 Standalone PWA Installation (Android & iOS PWA)
+Since Secretum is configured as a fully offline Progressive Web App (PWA) with client-side caching limits, you can pin it directly onto your mobile screens:
+
+* **iOS (Apple Safari)**: Tap the Share Arrow icon, scroll down, select "Add to Home Screen", then pin.
+* **Android (Google Chrome)**: Tap the Triple-dot Menu, select "Install App" or "Add to Home Screen".
+* **Laptops/Desktops**: Click the "Install Arrow Icon" inside your browser address bar to load standalone.
+
+---
+
+## 🧩 Loaded Chromium Web Extensions
+To run Secretum directly inside your extension tray options popup:
+1. Build compilation output: \`npm run build\`
+2. Navigate directly to \`chrome://extensions/\`
+3. Activate the "Developer Mode" toggle on the top right.
+4. Click "Load Unpacked" and select the compiled \`/dist\` directory.`;
+
+  const handleDownloadExplanationMd = () => {
+    try {
+      const blob = new Blob([PROJECT_EXPLANATION_CONTENT], { type: "text/markdown;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "Dornals_Secretum_Engine_Manual.md");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error("Failed to trigger file download", err);
+    }
+  };
+
+  const handleCopyExplanation = () => {
+    navigator.clipboard.writeText(PROJECT_EXPLANATION_CONTENT);
+    setCopiedDoc(true);
+    setTimeout(() => setCopiedDoc(false), 2500);
+  };
 
   // Initialize WebAssembly environment on mount
   useEffect(() => {
@@ -608,23 +675,106 @@ export default function App() {
           {activeTab === "docs" && (
             <div className="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl space-y-6">
               
-              {/* PDF Dynamic Generation Integration */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-emerald-500/5 hover:bg-emerald-500/10 transition-colors border border-emerald-500/15 p-4 rounded-xl">
-                <div className="space-y-1">
-                  <h4 className="text-gray-200 font-semibold text-xs flex items-center gap-2 font-mono">
-                    📄 PORTABLE PAPER DOCUMENTATION (PDF)
-                  </h4>
-                  <p className="text-[11px] text-gray-400 font-sans leading-relaxed">
-                    Need a secure offline handbook, system brief, or project documentation file? Download a professional copy of this C++ WebAssembly architecture handbook instantly.
-                  </p>
+              {/* PDF Dynamic Generation Suite & Offline Exporter */}
+              <div className="space-y-4">
+                <div className="bg-emerald-500/5 border border-emerald-500/15 p-4 rounded-xl space-y-3.5">
+                  <div className="space-y-1">
+                    <h4 className="text-gray-200 font-bold text-xs flex items-center gap-2 font-mono">
+                      📄 CYBER ARCHITECT PORTABLE MANUAL (PDF)
+                    </h4>
+                    <p className="text-[11px] text-gray-400 font-sans leading-relaxed">
+                      Need a secure offline system manual, physical handbook, or cryptographic brief? This application formats a beautifully structured print document instantly on click.
+                    </p>
+                  </div>
+                  
+                  {/* Redirect warning for sandboxed workspace preview frame */}
+                  <div className="p-2.5 bg-yellow-500/10 border border-yellow-500/20 text-yellow-300 rounded-lg text-[10px] font-sans leading-relaxed">
+                    <strong>⚠️ Iframe Sandbox Environment Notice:</strong> Since some browsers restrict native OS print dialogs inside third-party preview frames, please Click the <strong className="text-yellow-200">"Open in New Tab"</strong> button in your top right corner menu beforehand to launch the system print successfully.
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <button
+                      onClick={() => window.print()}
+                      className="flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 text-gray-950 font-sans font-bold text-xs rounded-xl hover:bg-emerald-400 active:scale-95 transition-all w-full sm:w-1/2 cursor-pointer shadow-[0_0_15px_rgba(16,185,129,0.15)]"
+                    >
+                      <Download className="w-4 h-4 shrink-0 text-gray-950" />
+                      <span>PRINT OR EXPORT TO PDF</span>
+                    </button>
+
+                    <button
+                      onClick={handleDownloadExplanationMd}
+                      className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-200 font-sans font-bold text-xs rounded-xl active:scale-95 transition-all w-full sm:w-1/2 cursor-pointer border border-gray-700"
+                    >
+                      <Download className="w-4 h-4 shrink-0 text-emerald-400" />
+                      <span>DOWNLOAD .MD MANUAL</span>
+                    </button>
+                  </div>
                 </div>
-                <button
-                  onClick={() => window.print()}
-                  className="flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 text-gray-950 font-sans font-bold text-xs rounded-xl hover:bg-emerald-400 active:scale-95 transition-all w-full sm:w-auto shrink-0 cursor-pointer shadow-[0_0_15px_rgba(16,185,129,0.15)]"
-                >
-                  <Download className="w-4 h-4 shrink-0 text-gray-950" />
-                  <span>DOWNLOAD DOCUMENTATION PDF</span>
-                </button>
+
+                {/* Direct copy and browse helper for the handbook markdown */}
+                <div className="bg-gray-950 border border-gray-850 rounded-xl p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Terminal className="w-4 h-4 text-emerald-400" />
+                      <span className="text-xs font-mono text-gray-300">EXPLORATION & ARCHITECTURE MANUAL</span>
+                    </div>
+                    <button
+                      onClick={handleCopyExplanation}
+                      className="flex items-center gap-1.5 px-3 py-1 bg-gray-900 border border-gray-800 text-gray-300 font-sans text-[11px] rounded-lg hover:border-emerald-500/30 hover:text-emerald-400 active:scale-95 transition-all cursor-pointer"
+                    >
+                      {copiedDoc ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                          <span className="text-emerald-400 font-medium">COPIED!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>COPY MANUAL TEXT</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Scrollable document visualizer inside custom terminal component */}
+                  <div className="bg-gray-950/60 p-3 rounded-lg border border-gray-900 overflow-y-auto max-h-56 size-full text-[10px] font-mono text-gray-400 leading-relaxed scrollbar-thin select-text space-y-4">
+                    <div>
+                      <h5 className="text-emerald-400 font-bold mb-1"># Dornal's Secretum Engine Cryptographic Manual</h5>
+                      <p>High-Performance Client-Side C++ WebAssembly Password Architect and PWA Extension.</p>
+                    </div>
+                    <div className="border-t border-gray-900 pt-2 text-[10px]">
+                      <h6 className="text-gray-200 font-bold uppercase mb-1">1. Complete File-By-File Directory Map:</h6>
+                      <pre className="text-gray-500 bg-gray-950/30 p-2 rounded text-[9px] leading-tight select-text overflow-x-auto">
+{`/ (Project Root)
+├── package.json           # Host metadata and execution scripts
+├── vite.config.ts         # Vite build configuration
+├── index.html             # HTML5 Entry-point & PWA loader
+├── public/
+│   ├── favicon.svg        # Application launcher icon
+│   ├── site.webmanifest   # Webmanifest parameters for PWA pinning
+│   ├── sw.js              # ServiceWorker client-side cache interceptor
+└── src/
+    ├── main.tsx           # React bootstrap entrypoint
+    ├── App.tsx            # Parent UI controller & dashboard
+    ├── types.ts           # Shared TypeScript interfaces
+    └── components/
+        ├── WasmLoader.ts         # WASM interface & manual JS fallback
+        ├── PassphraseGenerator.ts # Dictionary passphrase loader
+        ├── StrengthMeter.ts       # Shannon Entropy rating scale
+        ├── HashViewer.ts          # SubtleCrypto SHA-256 calculator`}
+                      </pre>
+                    </div>
+                    <div className="border-t border-gray-900 pt-2 text-[10px]">
+                      <h6 className="text-gray-200 font-bold uppercase mb-1">2. Hardware Seed & WASM Virtualization Lifecycle:</h6>
+                      <p>Rather than using standard predictable linear pseudo-generators, Secretum requests high-entropy kernel interrupt byte feeds from the native platform device via <code className="text-rose-400">window.crypto.getRandomValues()</code>.</p>
+                      <p className="mt-1">Raw buffers map directly across the sandboxed WASM memory segment boundary. Compiled C++ division instructions process non-modulo biased index transformations in register-level instructions.</p>
+                    </div>
+                    <div className="border-t border-gray-900 pt-2 text-[10px]">
+                      <h6 className="text-gray-200 font-bold uppercase mb-1">3. Standalone Mobile Web App installation:</h6>
+                      <p>Secretum supports complete offline installation. On iPhone (Safari), tap prompt Share &rarr; Add to Home Screen. On Android (Chrome/Brave), select Settings &rarr; Install Engine.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Project Introduction */}
