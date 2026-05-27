@@ -1,0 +1,6 @@
+{
+  "name": "Secure Password Generator",
+  "description": "A high-performance offline password generator featuring custom WebAssembly (C++) cryptographic logic, custom attributes, dynamic entropy evaluation, and secure data export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
