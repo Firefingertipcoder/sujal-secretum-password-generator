@@ -4,7 +4,7 @@
  * ============================================================================
  * 
  * Project Name: Cryptographic WebAssembly Password Generator
- * Author: Sujal (sujaldornal270506@gmail.com)
+ * Author: Dornal (sujaldornal270506@gmail.com)
  * 
  * This file contains the encoded WebAssembly bytes compiled from host C++.
  * It handles instant WebAssembly sandbox compilation in the client browser
@@ -50,7 +50,7 @@ export async function initWasmEngine(): Promise<boolean> {
     const result = await WebAssembly.instantiate(WASM_BYTES);
     wasmExports = result.instance.exports as unknown as WasmExports;
     isLoaded = true;
-    console.log("🟢 Sujal's C++ Cryptographic WebAssembly Engine compiled successfully in sandbox.");
+    console.log("🟢 Dornal's C++ Cryptographic WebAssembly Engine compiled successfully in sandbox.");
     return true;
   } catch (err: any) {
     loadError = err.message || String(err);

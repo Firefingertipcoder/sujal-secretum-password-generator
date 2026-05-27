@@ -4,7 +4,7 @@
  * ============================================================================
  * 
  * Project Name: Cryptographic WebAssembly Password Generator
- * Author: Sujal
+ * Author: Dornal
  * Description: Implements highly secure passphrase extraction using compiled C++
  *              WebAssembly selectors from a robust, offline-compressed dictionary.
  * 
@@ -43,7 +43,7 @@ const VOWELS = ["a", "e", "i", "o", "u"];
 const CONSONANTS = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "r", "s", "t", "v", "w", "z"];
 
 /**
- * Core cryptographic passphrase builder using Sujal's C++ random index calculations.
+ * Core cryptographic passphrase builder using Dornal's C++ random index calculations.
  */
 export function generatePassphrase(
   numWords: number,
@@ -56,7 +56,7 @@ export function generatePassphrase(
 
   for (let i = 0; i < numWords; i++) {
     // We pass the cryptographically secure random value and the dictionary size
-    // straight into Sujal's C++ WebAssembly index mapper!
+    // straight into Dornal's C++ WebAssembly index mapper!
     const index = generatePasswordIndex(randomValues[i], DICTIONARY.length);
     let word = DICTIONARY[index];
     

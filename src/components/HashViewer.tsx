@@ -4,7 +4,7 @@
  * ============================================================================
  * 
  * Project Name: Cryptographic WebAssembly Password Generator
- * Author: Sujal
+ * Author: Dornal
  * Description: High-performance, fully client-side SHA-256 hashes generated
  *              dynamically via SubtleCrypto Web API.
  * 

@@ -3,7 +3,7 @@
   "name": "Secretum - C++ WebAssembly Password Generator",
   "version": "1.0.0",
   "description": "High-performance offline password generator featuring custom WebAssembly (C++) cryptographic logic, custom options, and entropy rating.",
-  "author": "Sujal",
+  "author": "Dornal",
   "action": {
     "default_popup": "index.html",
     "default_title": "Open Secretum Generator"

@@ -4,7 +4,7 @@
  * ============================================================================
  * 
  * Project Name: Cryptographic WebAssembly Password Generator
- * Author: Sujal
+ * Author: Dornal
  * Description: Intercepts network fetches to instantly serve layout assets
  *              and WebAssembly byte hashes directly from local cache storage,
  *              supporting 100% offline usage on laptops and mobile devices.

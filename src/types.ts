@@ -4,7 +4,7 @@
  * ============================================================================
  * 
  * Project Name: Cryptographic WebAssembly Password Generator
- * Author: Sujal
+ * Author: Dornal
  * 
  * This file declares state management shapes and interfaces.
  * 

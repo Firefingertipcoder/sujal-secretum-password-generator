@@ -4,7 +4,7 @@
  * ============================================================================
  * 
  * Project Name: Cryptographic WebAssembly Password Generator
- * Author: Sujal (sujaldornal270506@gmail.com)
+ * Author: Dornal (sujaldornal270506@gmail.com)
  * Version: 1.0.0
  * Date: May 2026
  * Description: High-performance, memory-isolated password mapping logic and

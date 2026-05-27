@@ -4,7 +4,7 @@
  * ============================================================================
  * 
  * Project Name: Secure Password Generator with WebAssembly C++ Core
- * Author: Sujal (sujaldornal270506@gmail.com)
+ * Author: Dornal (sujaldornal270506@gmail.com)
  * Version: 1.0.0
  * Description: Unifies the high-performance compiled WebAssembly C++ core with
  *              advanced client options, instant entropy audits, bulk batches,
@@ -189,10 +189,11 @@ export default function App() {
   };
 
   return (
-    <div id="root_container" className="min-h-screen bg-gray-950 text-gray-100 flex flex-col justify-between selection:bg-emerald-500/30 selection:text-emerald-300 antialiased py-3 px-3 sm:px-6">
-      
-      {/* 1. ARCHITECTURAL HEADER & CORE STATUS */}
-      <header className="max-w-4xl w-full mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-4 border-b border-gray-900 mb-6 shrink-0">
+    <>
+      <div id="root_container" className="min-h-screen bg-gray-950 text-gray-100 flex flex-col justify-between selection:bg-emerald-500/30 selection:text-emerald-300 antialiased py-3 px-3 sm:px-6 print:hidden">
+        
+        {/* 1. ARCHITECTURAL HEADER & CORE STATUS */}
+        <header className="max-w-4xl w-full mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-4 border-b border-gray-900 mb-6 shrink-0">
         <div>
           <div className="flex items-center gap-2.5">
             <div className="bg-emerald-500/10 border border-emerald-500/20 p-2 rounded-xl text-emerald-400">
@@ -200,7 +201,7 @@ export default function App() {
             </div>
             <div>
               <h1 className="text-xl font-bold tracking-tight bg-gradient-to-r from-gray-100 via-gray-200 to-emerald-400 bg-clip-text text-transparent">
-                Sujal's Secretum Engine
+                Dornal's Secretum Engine
               </h1>
               <p className="text-xs text-gray-400 font-mono">
                 C++ WebAssembly Symmetric Password Architect
@@ -209,25 +210,38 @@ export default function App() {
           </div>
         </div>
 
-        {/* Wasm Diagnostic Readout Badge */}
-        <div className="flex items-center gap-2.5 bg-gray-900/60 p-2.5 px-3.5 rounded-xl border border-gray-800">
-          <div className="flex flex-col text-right">
-            <span className="text-[10px] font-mono text-gray-500 uppercase">Engine Status</span>
-            <span className="text-[11px] font-mono font-medium text-gray-300">{wasmStatus.mode}</span>
+        {/* Wasm Diagnostic and PDF download row */}
+        <div className="flex flex-row items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+          {/* Global PDF Download Button */}
+          <button
+            onClick={() => window.print()}
+            title="Download Custom System Manual/Documentation PDF"
+            className="flex items-center justify-center gap-2 px-3.5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-sans font-bold text-xs rounded-xl active:scale-95 transition-all cursor-pointer shadow-[0_0_12px_rgba(16,185,129,0.15)] shrink-0"
+          >
+            <Download className="w-3.5 h-3.5 text-gray-950" />
+            <span>SAVE MANUAL PDF</span>
+          </button>
+
+          {/* Wasm Diagnostic Readout Badge */}
+          <div className="flex items-center gap-2.5 bg-gray-905 p-2 py-1.5 px-3 rounded-xl border border-gray-800 shrink-0">
+            <div className="flex flex-col text-right">
+              <span className="text-[9px] font-mono text-gray-500 uppercase">Engine Status</span>
+              <span className="text-[10px] font-mono font-medium text-gray-300">{wasmStatus.mode}</span>
+            </div>
+            <span className="relative flex h-2 w-2">
+              {wasmStatus.loaded ? (
+                <>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </>
+              ) : (
+                <>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                </>
+              )}
+            </span>
           </div>
-          <span className="relative flex h-2.5 w-2.5">
-            {wasmStatus.loaded ? (
-              <>
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-              </>
-            ) : (
-              <>
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-500"></span>
-              </>
-            )}
-          </span>
         </div>
       </header>
 
@@ -594,6 +608,25 @@ export default function App() {
           {activeTab === "docs" && (
             <div className="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl space-y-6">
               
+              {/* PDF Dynamic Generation Integration */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-emerald-500/5 hover:bg-emerald-500/10 transition-colors border border-emerald-500/15 p-4 rounded-xl">
+                <div className="space-y-1">
+                  <h4 className="text-gray-200 font-semibold text-xs flex items-center gap-2 font-mono">
+                    📄 PORTABLE PAPER DOCUMENTATION (PDF)
+                  </h4>
+                  <p className="text-[11px] text-gray-400 font-sans leading-relaxed">
+                    Need a secure offline handbook, system brief, or project documentation file? Download a professional copy of this C++ WebAssembly architecture handbook instantly.
+                  </p>
+                </div>
+                <button
+                  onClick={() => window.print()}
+                  className="flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500 text-gray-950 font-sans font-bold text-xs rounded-xl hover:bg-emerald-400 active:scale-95 transition-all w-full sm:w-auto shrink-0 cursor-pointer shadow-[0_0_15px_rgba(16,185,129,0.15)]"
+                >
+                  <Download className="w-4 h-4 shrink-0 text-gray-950" />
+                  <span>DOWNLOAD DOCUMENTATION PDF</span>
+                </button>
+              </div>
+
               {/* Project Introduction */}
               <div className="space-y-2.5 pb-4 border-b border-gray-800">
                 <h3 className="text-base font-semibold text-gray-200 flex items-center gap-2">
@@ -601,7 +634,7 @@ export default function App() {
                 </h3>
                 <div className="text-xs text-gray-300 space-y-3 leading-relaxed">
                   <p>
-                    This application operates complete symmetric password and passphrase generators compiled entirely in high-performance <strong className="text-emerald-400">C++ WebAssembly (WASM)</strong> space inside the browser sandbox, authored and designed by <strong className="text-gray-100 font-bold">Sujal</strong>.
+                    This application operates complete symmetric password and passphrase generators compiled entirely in high-performance <strong className="text-emerald-400">C++ WebAssembly (WASM)</strong> space inside the browser sandbox, authored and designed by <strong className="text-gray-100 font-bold">Dornal</strong>.
                   </p>
                   <p>
                     By coupling Javascript's secure client crypt-generator (<code className="bg-gray-950 px-1 py-0.5 rounded text-rose-400 font-mono">window.crypto.getRandomValues</code>) with native binary execution in WebAssembly, we completely eliminate classic scripting bias or weak visual patterns, producing high-entropy credentials which are immune to local dictionary predictions.
@@ -700,9 +733,153 @@ export default function App() {
           <span>🛡️ Pure Offline End-to-End Symmetric Cryptography</span>
         </div>
         <div>
-          <span>Project Author: <strong>Sujal</strong></span>
+          <span>Project Author: <strong>Dornal</strong></span>
         </div>
       </footer>
     </div>
-  );
+
+    {/* 4. PUBLICATION-READY PRINT ARCHITECTURE FOR OFFLINE PDF HANDBOOKS */}
+    <div id="pdf-printable-document" className="hidden print:block bg-white text-gray-900 font-sans p-16 select-text max-w-4xl mx-auto overflow-visible leading-relaxed">
+      {/* Title & Cover Page */}
+      <div className="border-b-4 border-emerald-600 pb-8 mb-10">
+        <div className="flex items-center justify-between mb-4">
+          <div className="text-xs font-mono tracking-widest uppercase text-emerald-700 font-bold bg-emerald-50 px-2 py-1 rounded">
+            OFFICE OF THE CYBER ARCHITECT
+          </div>
+          <div className="text-xs text-gray-400 font-mono">
+            SYSTEM MANUAL // SEC-REF: DORNAL-PW-WASM
+          </div>
+        </div>
+        <h1 className="text-3xl font-bold tracking-tight text-gray-950 mb-2">
+          SECRETUM CRYPTOGRAPHIC ENGINE HANDBOOK
+        </h1>
+        <h2 className="text-base text-emerald-700 font-medium tracking-wide">
+          High-Performance C++ WebAssembly Password Architecture Guide
+        </h2>
+        <div className="flex items-center gap-6 mt-6 pt-6 border-t border-gray-100 text-xs text-gray-500 font-mono">
+          <div>AUTHOR: <strong className="text-gray-900 font-bold">DORNAL</strong></div>
+          <div>CORE: <strong className="text-gray-900 font-bold">C++ / WEBASSEMBLY (WASM)</strong></div>
+          <div>CLASSIFICATION: <strong className="text-emerald-700 font-bold">100% SECURE CLIENT-SIDE</strong></div>
+        </div>
+      </div>
+
+      {/* Quick Abstract Section */}
+      <div className="space-y-4 mb-10 bg-gray-50 p-6 rounded-xl border border-gray-100">
+        <h3 className="text-xs font-bold text-gray-800 tracking-wider uppercase font-mono border-b pb-2">
+          Executive Architectural Summary
+        </h3>
+        <p className="text-xs text-gray-700 leading-relaxed">
+          <strong>Secretum</strong> is an advanced, offline-first cryptographic password generator that ensures absolute key sovereignty.
+          By compiling high-speed mathematical index mappings inside a <strong>C++ WebAssembly (WASM) binary</strong> sandbox and seeding it with hardware-derived entropy via standard JavaScript interfaces (<code>window.crypto.getRandomValues</code>), Secretum delivers uniform distribution results that are immune to classical interpretation profiling or local prediction vectors.
+        </p>
+      </div>
+
+      <div style={{ pageBreakAfter: "always" }}></div>
+
+      {/* Detailed Technical Pipeline */}
+      <div className="space-y-8 mb-10">
+        <h2 className="text-lg font-bold text-gray-950 border-b border-gray-255 pb-3">
+          1. Cryptographic Entropy Pipeline
+        </h2>
+        
+        <div className="space-y-4 text-xs text-gray-700">
+          <p>
+            Standard software randomizers often generate predictable byte series over recurring loops. Secretum completely mitigates security degradation through a segmented execution model:
+          </p>
+
+          <div className="my-4 border-l-4 border-emerald-500 pl-4 bg-emerald-50/20 py-2.5 rounded-r">
+            <h4 className="font-bold text-gray-950 text-xs font-mono uppercase tracking-wider mb-0.5">
+              Phase I: Hardware Entropy Seeds
+            </h4>
+            <p className="text-[11px] text-gray-600 leading-relaxed">
+              The browser accesses direct local CPU/kernel hardware entropy to generate high-degree 32-bit state integers through the native <code>window.crypto.getRandomValues</code> framework API.
+            </p>
+          </div>
+
+          <div className="my-4 border-l-4 border-teal-500 pl-4 bg-teal-50/20 py-2.5 rounded-r">
+            <h4 className="font-bold text-gray-950 text-xs font-mono uppercase tracking-wider mb-0.5">
+              Phase II: High-Speed WebAssembly Virtual Machine Boundary
+            </h4>
+            <p className="text-[11px] text-gray-600 leading-relaxed">
+              Raw entropy floats are securely transferred as binary inputs directly across the WASM runtime memory interface line. The compiled C++ binary executes division operations to map indexes deterministically without modulo bias.
+            </p>
+          </div>
+
+          <h3 className="font-bold text-gray-900 text-xs mt-6 uppercase tracking-wider">Comparative Attribute Specifications</h3>
+          <table className="w-full text-xs text-left text-gray-600 mt-2 border border-gray-250 border-collapse">
+            <thead>
+              <tr className="bg-gray-50 border-b border-gray-250">
+                <th className="p-2 border-r border-gray-250 font-mono font-bold text-gray-800">Attribute</th>
+                <th className="p-2 font-mono font-bold text-gray-800">C++ WebAssembly Implementation Value</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              <tr>
+                <td className="p-2 border-r border-gray-250 font-semibold text-gray-900">Virtualization Core</td>
+                <td className="p-2">Client Sandbox Chrome/Safari WebAssembly Assembly instructions</td>
+              </tr>
+              <tr>
+                <td className="p-2 border-r border-gray-250 font-semibold text-gray-900">Security Guarantee</td>
+                <td className="p-2">No remote analytics transmission, 100% offline local memory cache</td>
+              </tr>
+              <tr>
+                <td className="p-2 border-r border-gray-250 font-semibold text-gray-900">Dictionary Modulo Bias</td>
+                <td className="p-2">Mathematical zero-bias calculated natively inside fast pointers</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style={{ pageBreakAfter: "always" }}></div>
+
+      {/* Core Setup Guide */}
+      <div className="space-y-6">
+        <h2 className="text-lg font-bold text-gray-950 border-b border-gray-255 pb-3">
+          2. Platform Portability & Standalone Setup Channels
+        </h2>
+        
+        <div className="space-y-6 text-xs text-gray-700">
+          <div>
+            <h3 className="font-bold text-gray-900 text-xs uppercase tracking-wider mb-1.5 font-mono">
+              📦 A. Packaged Web Application Extensions (Chromium Suite)
+            </h3>
+            <p className="text-[11px] text-gray-650 leading-relaxed mb-2">
+              Secretum can be loaded directly as a persistent browser extension:
+            </p>
+            <ol className="list-decimal list-inside pl-1 space-y-1 text-gray-605">
+              <li>Open your project and build: <code className="bg-gray-50 p-0.5 px-1 rounded border">npm run build</code> (prepares <code>manifest.json</code> in <code>/dist</code>).</li>
+              <li>Navigate command window directly to your Chrome Extensions suite: <code className="text-emerald-800 font-bold">chrome://extensions/</code></li>
+              <li>Toggle active the <strong>Developer Mode</strong> checkbox in the top header.</li>
+              <li>Select <strong>Load Unpacked</strong> and import your compiled <code>/dist</code> directory directly.</li>
+            </ol>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-gray-900 text-xs uppercase tracking-wider mb-1.5 font-mono">
+              📱 B. Native PWA Mobile Pins (Apple iOS & Google Android)
+            </h3>
+            <p className="text-[11px] text-gray-650 leading-relaxed mb-2.5">
+              Featuring offline cache indexing (<code>sw.js</code>) and hardware app profiles (<code>site.webmanifest</code>), install Secretum directly on mobile screens:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-3 bg-gray-50 rounded border border-gray-150">
+                <h4 className="font-bold text-emerald-800 uppercase text-[10px] tracking-wider mb-1">Apple iOS (Safari)</h4>
+                <p className="text-[10px] text-gray-605 leading-relaxed">
+                  Open your deployed site link in Safari. Tap the share tray arrow icon, scroll, and select <strong>Add to Home Screen</strong>.
+                </p>
+              </div>
+              <div className="p-3 bg-gray-50 rounded border border-gray-150">
+                <h4 className="font-bold text-emerald-800 uppercase text-[10px] tracking-wider mb-1">Google Android (Chrome)</h4>
+                <p className="text-[10px] text-gray-605 leading-relaxed">
+                  Open the site index in Chrome. Click install prompt banner, or tap the triple vertical menu dots and select <strong>Install App</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>
+);
 }

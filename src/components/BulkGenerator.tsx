@@ -4,7 +4,7 @@
  * ============================================================================
  * 
  * Project Name: Cryptographic WebAssembly Password Generator
- * Author: Sujal
+ * Author: Dornal
  * Description: Generates secure batches of passwords using configured 
  *              selectors and allows exporting them securely in TXT, CSV, or JSON.
  * 
@@ -64,7 +64,7 @@ export const BulkGenerator: React.FC<Props> = ({ options, charPool, generatePass
 
     let blobContent = "";
     let mimeType = "text/plain";
-    let filename = `secure_passwords_sujal.${format}`;
+    let filename = `secure_passwords_dornal.${format}`;
 
     if (format === "txt") {
       blobContent = records.map((r) => r.password).join("\n");
@@ -75,7 +75,7 @@ export const BulkGenerator: React.FC<Props> = ({ options, charPool, generatePass
       mimeType = "text/csv";
     } else if (format === "json") {
       const exportObj = {
-        title: "Sujal's Secure WebAssembly Password Generator Bulk Export",
+        title: "Dornal's Secure WebAssembly Password Generator Bulk Export",
         generation_timestamp: new Date().toISOString(),
         total_count: records.length,
         items: records.map(({ password, length, entropy, strength, createdAt }) => ({
@@ -109,7 +109,7 @@ export const BulkGenerator: React.FC<Props> = ({ options, charPool, generatePass
             <Table className="w-4 h-4 text-emerald-400" /> Bulk Password Architect
           </h3>
           <p className="text-xs text-gray-400 leading-relaxed">
-            Generate multiple secure passwords concurrently employing Sujal's C++ WASM parameters.
+            Generate multiple secure passwords concurrently employing Dornal's C++ WASM parameters.
           </p>
         </div>
 

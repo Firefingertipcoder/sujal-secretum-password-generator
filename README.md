@@ -4,7 +4,7 @@ Welcome to **Secretum Engine**, a modern, high-performance, cryptographically se
 
 This project operates entirely on the client-side of the user's browser, enforcing complete data isolation and ensuring generated credentials never leave your workspace.
 
-**Project Author:** Sujal (sujaldornal270506@gmail.com)
+**Project Author:** Dornal (sujaldornal270506@gmail.com)
 
 ---
 
@@ -170,4 +170,4 @@ Since Secretum is a fully-functioning Progressive Web App with off-grid logic ca
 * **Zero Cloud Databases:** No cookies, remote analytics trackers, or servers are ever deployed to track, gather, or preserve your generated credentials.
 * **Secured Cryptographic Anchors:** Uses native platform level entropy arrays (`window.crypto.getRandomValues`) containing physical local system ambient noises or CPU state parameters, completely bypassing typical predictable `Math.random` loopholes.
 
-*Designed with ❤️ and built on modern WebAssembly parameters by **Sujal**.*
+*Designed with ❤️ and built on modern WebAssembly parameters by **Dornal**.*

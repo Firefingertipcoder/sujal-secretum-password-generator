@@ -4,7 +4,7 @@
  * ============================================================================
  * 
  * Project Name: Cryptographic WebAssembly Password Generator
- * Author: Sujal
+ * Author: Dornal
  * Description: Calculates real-time entropy metrics and maps computational
  *              brute force times relative to modern and future hardware capabilities.
  * 
